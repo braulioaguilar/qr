@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  db:
+    image: $MYSQL_IMAGE
+    container_name: $MYSQL_CONTAINER
+    restart: always
+    environment: 
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    ports: 
+      - '3307:$MYSQL_PORT'
+    expose: 
+      - '$MYSQL_PORT'
+    volumes: 
+      - my-db:/var/lib/mysql
+  app:
+    build: .
+    container_name: $APP_CONTAINER
+    env_file:
+      - .env
+    ports:
+      - '$APP_PORT:$APP_PORT'
+    volumes:
+      - $APP_VOLUME
+networks:
+  default:
+    name: $NETWORK
+volumes: 
+  my-db:
