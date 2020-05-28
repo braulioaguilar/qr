@@ -35,8 +35,7 @@ func Connect() (*sql.DB, error) {
 	return instance, nil
 }
 
-// Migrate func
-func migrateDB(db *sql.DB) error {
+func migration(db *sql.DB) error {
 	driver, err := mysql.WithInstance(db, &mysql.Config{})
 	if err != nil {
 		return err
@@ -49,7 +48,7 @@ func migrateDB(db *sql.DB) error {
 
 	migration, err := migrate.NewWithDatabaseInstance(
 		fmt.Sprintf("file://%s/database/migrations", dir),
-		"mysql",
+		c.DRIVER,
 		driver,
 	)
 

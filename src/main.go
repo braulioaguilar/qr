@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/braulioinf/launcherqr/app"
+	"github.com/braulioinf/QRLauncher/src/app"
 )
 
 func main() {
+
 	app := app.App{}
 
 	app.Run()

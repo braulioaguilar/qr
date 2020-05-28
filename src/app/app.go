@@ -2,6 +2,7 @@ package app
 
 import (
 	"database/sql"
+	"fmt"
 )
 
 type App struct {
@@ -9,4 +10,5 @@ type App struct {
 }
 
 func (a *App) Run() {
+	fmt.Println("Running...")
 }
