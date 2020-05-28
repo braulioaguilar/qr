@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	c "github.com/braulioinf/launcherqr/constants"
+	c "github.com/braulioinf/QRLauncher/src/constants"
 	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/golang-migrate/migrate"
@@ -28,7 +28,7 @@ func Connect() (*sql.DB, error) {
 		return nil, err
 	}
 
-	if err := migrateDB(instance); err != nil {
+	if err := migration(instance); err != nil {
 		return instance, err
 	}
 
@@ -47,7 +47,7 @@ func migration(db *sql.DB) error {
 	}
 
 	migration, err := migrate.NewWithDatabaseInstance(
-		fmt.Sprintf("file://%s/database/migrations", dir),
+		fmt.Sprintf("file://%s/src/database/migrations", dir),
 		c.DRIVER,
 		driver,
 	)
