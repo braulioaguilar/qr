@@ -16,8 +16,9 @@ services:
     volumes: 
       - my-db:/var/lib/mysql
   app:
-    build: .
+    image: $APP_IMAGE
     container_name: $APP_CONTAINER
+    restart: always
     env_file:
       - .env
     ports:
