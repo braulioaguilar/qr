@@ -58,7 +58,7 @@ func migration(db *sql.DB) error {
 
 	migration.Log = &MigrationLogger{}
 
-	migration.Log.Printf("Running db migrations %v")
+	migration.Log.Printf("Running db migrations %v\n")
 	err = migration.Up()
 	if err != nil && err != migrate.ErrNoChange {
 		return err
@@ -69,7 +69,7 @@ func migration(db *sql.DB) error {
 		return err
 	}
 
-	migration.Log.Printf("Active db version %d", version)
+	migration.Log.Printf("Active db version %d\n", version)
 
 	return nil
 }
